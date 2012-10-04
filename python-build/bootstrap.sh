@@ -49,6 +49,15 @@ if [ ! -e "$BUILDDIR/openssl" ]; then
     git clone https://github.com/guardianproject/openssl-android.git openssl
 fi
 
+if [ ! -e "$BUILDDIR/pycrypto-2.6" ]; then
+    cd "$BUILDDIR"
+    set_downloader
+    downloader http://pypi.python.org/packages/source/p/pycrypto/pycrypto-2.6.tar.gz
+    tar zxvf pycrypto-2.6.tar.gz
+    cd "$BUILDDIR/pycrypto-2.6"
+    patch -p1 -i "$ROOTDIR/patch/pycrypto-2.6-customize_compiler.patch"
+fi
+
 if [ ! -d "$BUILDDIR/toolchain" ]; then
     [ ! -f "$NDK/build/tools/make-standalone-toolchain.sh" ] && error "missing \$NDK/build/tools/make-standalone-toolchain.sh"
     "$NDK/build/tools/make-standalone-toolchain.sh" --platform=${ANDROID_PLATFORM} --install-dir="${BUILDDIR}/toolchain"

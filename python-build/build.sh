@@ -90,4 +90,12 @@ export MODULE=""
 export BLDSHARED="arm-linux-androideabi-gcc -shared $CFLAGS -L$ROOTDIR -lpython2.7 -Wl,--no-undefined"
 
 build_python
+
+# pycrypto-2.6
+cd $ROOTDIR/pycrypto-2.6
+export ac_cv_func_malloc_0_nonnull=yes # to fix rpl_malloc issue
+export ARM_LINKER="arm-linux-androideabi-gcc"
+./configure --host=arm-eabi --enable-shared
+$HOSTPYTHON setup.py bdist
+
 yes | mv $ROOTDIR/libpython2.7.so $ROOTDIR/build/lib/libpython2.7.so
