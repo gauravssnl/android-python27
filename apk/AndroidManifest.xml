@@ -35,12 +35,15 @@
 			<action android:name="com.android.python27.ScriptService" />
 		</intent-filter>
 	</service>
+	
     <service 	android:name="BackgroundScriptService">
     	<intent-filter>
 			<action android:name="com.android.python27.BackgroundScriptService" />
 		</intent-filter>
 	</service>
 	
+	<service android:name=".RpcServerService" />
+	        
     <activity 	android:configChanges="keyboardHidden|orientation"
       			android:name="com.googlecode.android_scripting.activity.FutureActivity" 
       			android:theme="@android:style/Theme.Translucent"/>
@@ -49,6 +52,16 @@
       			android:configChanges="keyboardHidden|orientation" 
       			android:name="com.android.python27.DialogActivity"/>
 
+	<activity
+     		android:name=".RpcServerLauncher"
+     		android:taskAffinity=""
+     		android:theme="@android:style/Theme.Translucent.NoTitleBar">
+     		<intent-filter>
+       		<action android:name="android.intent.action.VIEW" />
+       		<category android:name="android.intent.category.DEFAULT" />
+     		</intent-filter>
+   	</activity>
+    	
 </application>
 
   <supports-screens android:xlargeScreens="true" />

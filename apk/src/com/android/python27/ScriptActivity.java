@@ -51,13 +51,13 @@ public class ScriptActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// mounted sdcard ?
-		if (!Environment.getExternalStorageState().equals("mounted")) {
-		  Log.e(GlobalConstants.LOG_TAG, "External storage is not mounted");
-		  
-		  Toast toast = Toast.makeText( getApplicationContext(), "External storage not mounted", Toast.LENGTH_LONG);
-		  toast.show();
-		  return;
-		}
+		//if (!Environment.getExternalStorageState().equals("mounted")) {
+		//  Log.e(GlobalConstants.LOG_TAG, "External storage is not mounted");
+		//  
+		//  Toast toast = Toast.makeText( getApplicationContext(), "External storage not mounted", Toast.LENGTH_LONG);
+		//  toast.show();
+		//  return;
+		//}
 	  
 		// install needed ?
     	boolean installNeeded = isInstallNeeded();

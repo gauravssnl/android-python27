@@ -168,7 +168,7 @@ public class Utils {
 	  
 	public static void createDirectoryOnExternalStorage(String path) {
         try {
-    		if(Environment.getExternalStorageState().equalsIgnoreCase("mounted")) {
+    		//if(Environment.getExternalStorageState().equalsIgnoreCase("mounted")) {
     		    File file = new File(Environment.getExternalStorageDirectory(), path);
     		    if (!file.exists()) {
     		    	try {
@@ -179,7 +179,7 @@ public class Utils {
     		            Log.e(GlobalConstants.LOG_TAG,"createDirectoryOnExternalStorage error: ", e);
     				}
     		    }		
-    		}
+    		//}
     		else {
                 Log.e(GlobalConstants.LOG_TAG,"createDirectoryOnExternalStorage error: " + "External storage is not mounted");		
     		}
