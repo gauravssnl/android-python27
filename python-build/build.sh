@@ -98,4 +98,9 @@ export ARM_LINKER="arm-linux-androideabi-gcc"
 ./configure --host=arm-eabi --enable-shared
 $HOSTPYTHON setup.py bdist
 
+# psutil-0.6.1
+cd $ROOTDIR/psutil-0.6.1
+export ARM_LINKER="arm-linux-androideabi-gcc"
+$HOSTPYTHON setup.py bdist
+
 yes | mv $ROOTDIR/libpython2.7.so $ROOTDIR/build/lib/libpython2.7.so

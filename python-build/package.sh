@@ -16,6 +16,8 @@ cp -r openssl/libs/armeabi/libcrypto.so  output/python/lib/libcrypto.so
 cp -r openssl/libs/armeabi/libssl.so  output/python/lib/libssl.so
 cp -r build/lib/python2.7/lib-dynload/*  output/python/lib/python2.7/lib-dynload/
 cp -r pycrypto-2.6/build/lib*/Crypto output/python/lib/python2.7/lib-dynload/
+mv psutil-0.6.1/build/lib*/*.so psutil-0.6.1/build/lib*/psutil
+cp -r psutil-0.6.1/build/lib*/psutil output/python/lib/python2.7/lib-dynload/
 #find pycrypto-2.6/build/lib* -name "*.so" -exec cp -v {} output/python/lib/python2.7/lib-dynload/ \;
 
 cd output
