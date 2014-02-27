@@ -36,9 +36,11 @@ import java.util.Arrays;
 import org.kde.necessitas.example.PyDroid.R;
 import org.kde.necessitas.ministro.IMinistro;
 import org.kde.necessitas.ministro.IMinistroCallback;
+import org.kde.necessitas.origo.Sl4aService.LaunchServerAsyncTask;
 
 import com.googlecode.android_scripting.FileUtils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -56,6 +58,8 @@ import android.content.res.Resources.Theme;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -108,6 +112,8 @@ public class QtActivity extends Activity
     private DexClassLoader m_classLoader = null; // loader object
     private String[] m_qtLibs = null; // required qt libs
 
+    private boolean sl4aStarted = false;
+    
     // this function is used to load and start the loader
     private void loadApplication(Bundle loaderParams)
     {
@@ -270,8 +276,21 @@ public class QtActivity extends Activity
 			}
 		} // end for all files in res/raw
 	}
+    
     private void startApp(final boolean firstStart)
     {
+
+    	if(!sl4aStarted) {
+        	try {
+        		startService(new Intent(getApplicationContext(), Sl4aService.class));
+        		sl4aStarted = true;
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    			Log.e(GlobalConstants.LOG_TAG, "Failed to start Sl4aService " + e.getMessage());
+    		}
+    	}
+
+  		
         try
         {
             File f = new File("/data/data/org.kde.necessitas.example.PyDroid/files/main.py");
@@ -543,6 +562,7 @@ public class QtActivity extends Activity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+                
         if (QtApplication.m_delegateObject != null && QtApplication.onCreate != null)
         {
             QtApplication.invokeDelegateMethod(QtApplication.onCreate, savedInstanceState);

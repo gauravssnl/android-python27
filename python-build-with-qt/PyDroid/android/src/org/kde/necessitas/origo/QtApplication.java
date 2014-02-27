@@ -32,9 +32,11 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.googlecode.android_scripting.BaseApplication;
+
 import android.app.Application;
 
-public class QtApplication extends Application
+public class QtApplication extends BaseApplication
 {
     public final static String QtTAG="Qt";
     public static Object m_delegateObject = null;
